@@ -131,7 +131,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
      * @param attrs
      * @param defStyleAttr
      */
-    private void init(Context context, AttributeSet attrs, int defStyleAttr) {
+    protected void init(Context context, AttributeSet attrs, int defStyleAttr) {
         this.removeAllViews();
         mPinHeight *= DENSITY;
         mPinWidth *= DENSITY;
@@ -177,7 +177,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
      * Creates editTexts and adds it to the pinview based on the pinLength specified.
      */
 
-    private void createEditTexts() {
+    protected void createEditTexts() {
         removeAllViews();
         editTextList.clear();
         EditText editText;
@@ -198,7 +198,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
      * @param attrs
      * @param defStyleAttr
      */
-    private void initAttributes(Context context, AttributeSet attrs, int defStyleAttr) {
+    protected void initAttributes(Context context, AttributeSet attrs, int defStyleAttr) {
         if (attrs != null) {
             final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.Pinview, defStyleAttr, 0);
             mPinBackground = array.getResourceId(R.styleable.Pinview_pinBackground, mPinBackground);
@@ -224,7 +224,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
      * @param styleEditText
      * @param tag
      */
-    private void generateOneEditText(EditText styleEditText, String tag) {
+    protected void generateOneEditText(EditText styleEditText, String tag) {
         params.setMargins(mSplitWidth / 2, mSplitWidth / 2, mSplitWidth / 2, mSplitWidth / 2);
         filters[0] = new InputFilter.LengthFilter(1);
         styleEditText.setFilters(filters);
@@ -254,7 +254,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
         styleEditText.setOnKeyListener(this);
     }
 
-    private int getKeyboardInputType() {
+    protected int getKeyboardInputType() {
         int it;
         switch (inputType) {
             case NUMBER:
@@ -298,7 +298,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
         return currentEditText;
     }
 
-    private void openKeyboard() {
+    protected void openKeyboard() {
         if (mForceKeyboard) {
             InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
@@ -380,7 +380,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
     /**
      * Handles the character transformation for password inputs.
      */
-    private void setTransformation() {
+    protected void setTransformation() {
         if (mPassword) {
             for (EditText editText : editTextList) {
                 editText.removeTextChangedListener(this);
@@ -453,7 +453,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
     /**
      * Disable views ahead of current focus, so a selector can change the drawing of those views.
      */
-    private void updateEnabledState() {
+    protected void updateEnabledState() {
         int currentTag = Math.max(0, getIndexOfCurrentFocus());
         for (int index = 0; index < editTextList.size(); index++) {
             EditText editText = editTextList.get(index);
@@ -513,7 +513,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
     /**
      * A class to implement the transformation mechanism
      */
-    private class PinTransformationMethod implements TransformationMethod {
+    protected class PinTransformationMethod implements TransformationMethod {
 
         private char BULLET = '\u2022';
 
@@ -555,7 +555,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
     /**
      * Getters and Setters
      */
-    private int getIndexOfCurrentFocus() {
+    protected int getIndexOfCurrentFocus() {
         return editTextList.indexOf(currentFocus);
     }
 
@@ -714,7 +714,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
         }
     }
 
-    private void setCursorColor(EditText view, @ColorInt int color) {
+    protected void setCursorColor(EditText view, @ColorInt int color) {
         try {
             // Get the cursor resource id
             Field field = TextView.class.getDeclaredField("mCursorDrawableRes");
