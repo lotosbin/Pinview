@@ -649,6 +649,21 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
             editText.setBackgroundResource(res);
     }
 
+    public void setPinBackgroundRes(@DrawableRes int middle, @DrawableRes int begin, @DrawableRes int end) {
+        this.mPinBackground = middle;
+        this.mPinBackgroundBegin = begin;
+        this.mPinBackgroundEnd = end;
+        for (int i = 0; i < editTextList.size(); i++) {
+
+            int res = middle;
+            if (i == 0) res = begin;
+            if (i == editTextList.size() - 1) res = end;
+            EditText editText = editTextList.get(i);
+            editText.setBackgroundResource(res);
+        }
+    }
+
+
     @Override
     public void setOnClickListener(OnClickListener l) {
         mClickListener = l;

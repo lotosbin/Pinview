@@ -29,5 +29,6 @@ public class MainActivity extends AppCompatActivity {
         pinview5.setTextSize(12);
         pinview5.setTextColor(Color.BLACK);
         pinview5.showCursor(true);
+
     }
 }
