@@ -82,6 +82,8 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
     private       boolean              mDelPressed    = false;
     @DrawableRes
     private       int                  mPinBackground = R.drawable.sample_background;
+    private int mPinBackgroundBegin = R.drawable.sample_background;
+    private int mPinBackgroundEnd = R.drawable.sample_background;
     private       boolean              mPassword      = false;
     private       String               mHint          = "";
     private       InputType            inputType      = InputType.TEXT;
@@ -202,6 +204,8 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
         if (attrs != null) {
             final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.Pinview, defStyleAttr, 0);
             mPinBackground = array.getResourceId(R.styleable.Pinview_pinBackground, mPinBackground);
+            mPinBackgroundBegin = array.getResourceId(R.styleable.Pinview_pinBackgroundBegin, mPinBackground);
+            mPinBackgroundEnd = array.getResourceId(R.styleable.Pinview_pinBackgroundEnd, mPinBackground);
             mPinLength = array.getInt(R.styleable.Pinview_pinLength, mPinLength);
             mPinHeight = (int) array.getDimension(R.styleable.Pinview_pinHeight, mPinHeight);
             mPinWidth = (int) array.getDimension(R.styleable.Pinview_pinWidth, mPinWidth);
@@ -245,7 +249,14 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
                 }
             });
         }
-        styleEditText.setBackgroundResource(mPinBackground);
+        int pinBackground = this.mPinBackground;
+        if ("0".equals(tag)) {
+            pinBackground = this.mPinBackgroundBegin;
+        }
+        if (((mPinLength - 1) + "").equals(tag)) {
+            pinBackground = this.mPinBackgroundEnd;
+        }
+        styleEditText.setBackgroundResource(pinBackground);
         styleEditText.setPadding(0, 0, 0, 0);
         styleEditText.setTag(tag);
         styleEditText.setInputType(getKeyboardInputType());

@@ -2,6 +2,8 @@
 <resources>
     <declare-styleable name="Pinview">
         <attr name="pinBackground" format="reference"/>
+        <attr name="pinBackgroundBegin" format="reference" />
+        <attr name="pinBackgroundEnd" format="reference" />
         <attr name="pinLength" format="integer"/>
         <attr name="pinWidth" format="dimension"/>
         <attr name="pinHeight" format="dimension"/>
