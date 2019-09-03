@@ -240,6 +240,7 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
             styleEditText.setClickable(false);
             styleEditText.setHint(mHint);
 
+
             styleEditText.setOnTouchListener(new OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -723,6 +724,15 @@ public class Pinview extends LinearLayout implements TextWatcher, View.OnFocusCh
         }
         for (EditText edt : editTextList) {
           edt.setTextColor(color);
+        }
+    }
+
+    public void setHintTextColor(@ColorInt int color) {
+        if (editTextList == null || editTextList.isEmpty()) {
+            return;
+        }
+        for (EditText edt : editTextList) {
+            edt.setHintTextColor(color);
         }
     }
 
